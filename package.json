@@ -1,7 +1,6 @@
 {
   "name": "mysql_react_node_folder",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,15 @@
   "dependencies": {
     "express": "^4.16.4",
     "mysql": "^2.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katherinestout/MySQL_React_Node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/katherinestout/MySQL_React_Node/issues"
+  },
+  "homepage": "https://github.com/katherinestout/MySQL_React_Node#readme",
+  "description": ""
 }
