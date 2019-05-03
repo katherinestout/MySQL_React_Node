@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,6 +13,17 @@ const db = mysql.createConnection({
 
 db.connect();
 
+app.use(cors());
+/*
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+    if(req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
+});
+*/
 app.get('/', (req, res) => {
     res.send('Go to all /flavors')
 });
@@ -20,9 +32,14 @@ app.get('/', (req, res) => {
 app.get('/flavors', (req, res) => {
     const sql = 'SELECT * FROM flavors';
 
-    db.query(sql, (err, result) => {
-        if(err) throw err;
-        res.send(result);
+    db.query(sql, (err, results) => {
+        if(err){
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
     });
 });
 
