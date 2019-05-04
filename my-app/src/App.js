@@ -10,6 +10,8 @@ class App extends Component {
       price: ''
     }
   }
+  
+
   componentDidMount(){
     this.getFlavors();
   }
@@ -23,27 +25,31 @@ class App extends Component {
 
   addFlavor = () => {
     const { flavor } = this.state;
-    fetch(`http://locahost:5000/flavors/add?type='${flavor.type}'&price=${flavor.price}`)
-    .then(response => response.json())
+    console.log(flavor);
+    fetch(`http://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`)
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
 
-  renderFlavor = ({type_id, type}) => <div key={type_id}>{type}</div>
+  renderFlavor = ({id, type}) => <div key={id}>{type}</div>
 
   
   render() {
 
-    const {flavors, flavor} = this.state;
+    const { flavors, flavor} = this.state;
 
     return (
       <div className="App">
+
         {flavors.map(this.renderFlavor)}
-        <input value={flavor.type}
-        onChange={e => this.setState({flavor: {...flavors, type: e.target.value}})}
+        
+        <input
+         value={flavor.type}
+        onChange={e => this.setState({flavor: {...flavor, type: e.target.value}})}
         />
-        <input value={flavor.price}
-         onChange={e => this.setState({flavor: {...flavors, price: e.target.value}})}
+        <input 
+        value={flavor.price}
+         onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
 
         <button onClick={this.addFlavor} > Add a flavor!</button>

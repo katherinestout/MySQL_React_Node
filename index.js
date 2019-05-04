@@ -47,11 +47,14 @@ app.get('/flavors', (req, res) => {
 app.get('/flavors/add', (req, res) => {
     const {type, price} = req.query;
 
-const sql = `INSERT INTO flavors(type, price) VALUES('${type}', ${price})`;
+const sql = `INSERT INTO flavors(type, price) VALUES('${type}', '${price}')`;
 //http://localhost:5000/flavors/add?type=pea&price=1
     db.query(sql, (err, results) => {
-        if(err) throw err;
-        res.send(results);
+        if(err) {
+            return res.send(err)
+        } else {
+        res.send('Sucessfully added');
+        }
     });
     
 });
