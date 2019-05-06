@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //import cors from 'cors';
 import FlavorCard from './FlavorCard';
 import Wrapper from './Wrapper';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -41,6 +42,12 @@ class App extends Component {
       .catch(err => console.log(err))
     }
 
+  handleUpdate = () => {
+    fetch(`http://localhost:5000/flavors/update?type=chocolate`)
+    .then(this.getFlavors)
+    .catch(err => console.log(err))
+  }
+
 
   render() {
 
@@ -48,9 +55,20 @@ class App extends Component {
 
     return (
       <div className="App">
+      <div className="container">
+      <div className="wrapper">
+
+      <div className="list-info">
+      <div className="list-info-list">
       <h1>Kat's Ice Cream Shop</h1>
       <h2>Add a new flavor to the shop!</h2>
       <h3>You can add, delete, and update flavors.</h3>
+      </div>
+      </div>
+
+      <div className="list">
+      <div className="list-grid">
+
        <Wrapper>
         {flavors.map(flavor => (
 
@@ -60,6 +78,7 @@ class App extends Component {
           type={flavor.type}
           price={flavor.price}
           handleClick={this.handleClick}
+          handleUpdate ={this.handleUpdate}
           />
 
          
@@ -68,19 +87,25 @@ class App extends Component {
      </Wrapper>
         <p>Type:</p>
         <input
+      
          value={flavor.type}
         onChange={e => this.setState({flavor: {...flavor, type: e.target.value}})}
         />
-        <span>&nbsp;</span> 
+  
         <p>Price:</p>
         <input 
+
         value={flavor.price}
          onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
-        <span>&nbsp;</span> 
 
-        <button onClick={this.addFlavor} > Add a flavor!</button>
-     
+        <button 
+        className="add-button" onClick={this.addFlavor} > Add a flavor!</button>
+      
+      </div>
+      </div>
+      </div>
+      </div>
       </div>
     )
   }

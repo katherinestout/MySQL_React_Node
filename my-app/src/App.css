@@ -1,33 +1,119 @@
-.App {
-  text-align: center;
+*{
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  background:#92bde7;
+  color:#485e74;
+  line-height:1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding:1em;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.container{
+  max-width:1170px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:1em;margin-bottom: 10%;
 }
 
-.App-link {
-  color: #61dafb;
+.wrapper{
+  box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.wrapper > *{
+  padding: 1em;
+}
+
+.list-info{
+  background:lightblue;
+
+}
+.list-info-list{
+  display: grid;
+text-align: center;
+grid-gap:20px;
+grid-template-columns: 1fr;
+}
+
+
+.list{
+  background:#f9feff;
+
+}
+list-grid{
+  display: grid;
+
+}
+
+
+
+.contact p{
+  margin:0;
+}
+
+.right{
+  text-align: right;
+
+}
+.add-button, .contact input {
+  width:100%;
+  padding:1em;
+  border:1px solid #c9e6ff;
+}
+
+.add-button{
+  background:#c9e6ff;
+  border:0;
+  text-transform: uppercase;
+}
+
+.update-button{
+  background: lightskyblue;
+  padding:1em;
+  border:1px solid #c9e6ff;
+  width:25%;
+
+}
+.delete-button{
+  background: lightblue;
+  padding:1em;
+  border:1px solid #c9e6ff;
+  width:25%;
+
+}
+
+.add-button:hover,.add-button:focus{
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+.update-button:hover,.add-button:focus{
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+.delete-button:hover,.add-button:focus{
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+
+/* LARGE SCREENS */
+@media(min-width:700px){
+  .wrapper{
+    display: grid;
+
   }
-  to {
-    transform: rotate(360deg);
+
+  .wrapper > *{
+    padding:2em;
   }
+
 }
