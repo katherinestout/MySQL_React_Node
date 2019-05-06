@@ -70,11 +70,11 @@ app.get('/flavors/delete', (req, res) => {
 //update a flavor
 app.get('/flavors/update', (req, res) => {
 
-    //const{type} = req.query;
+  const{id} = req.query;
 
-    const sql = `UPDATE flavors SET type='Mint Chocolate Chip' WHERE type = 'chocolate'`;
+    const sql = `UPDATE flavors SET type='Mint Chocolate Chip' WHERE id = '${id}'`;
 
-    //http://localhost:5000/flavors/update?type=chocolate
+    //http://localhost:5000/flavors/update?type=7
 
     db.query(sql, (err, results) => {
         if(err){
