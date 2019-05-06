@@ -10,10 +10,11 @@ ${props.price}
 <span>&nbsp;</span> 
 </p>
 
-<button className="delete-button" onClick={() => props.handleClick(props.id)}>DELETE</button>
+<button className="delete-button" 
+onClick={() => props.handleClick(props.id)}>DELETE</button>
 <span>&nbsp;</span> 
 <button className="update-button"
-onClick={() => props.handleUpdate(props.type)}>UDATE</button>
+onClick={() => props.handleUpdate(props.id)}>UDATE</button>
   </div>
 
 

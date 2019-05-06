@@ -36,14 +36,13 @@ class App extends Component {
 
   handleClick = (id) => {
   
-      console.log('clicked' + id);
       fetch(`http://localhost:5000/flavors/delete?id=${id}`)
       .then(this.getFlavors)
       .catch(err => console.log(err))
     }
 
-  handleUpdate = () => {
-    fetch(`http://localhost:5000/flavors/update?type=chocolate`)
+  handleUpdate = (id) => {
+    fetch(`http://localhost:5000/flavors/update?id=${id}`)
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
