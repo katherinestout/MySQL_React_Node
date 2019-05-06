@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 //import axios from 'axios';
 //import cors from 'cors';
+import FlavorCard from './FlavorCard';
+import Wrapper from './Wrapper';
 
 class App extends Component {
   state = {
     flavors: [],
     flavor: {
       type: '',
-      price: ''
+      price: '',
+      id: ''
     }
   }
   
@@ -25,23 +28,41 @@ class App extends Component {
 
   addFlavor = () => {
     const { flavor } = this.state;
-    console.log(flavor);
     fetch(`http://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`)
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
 
-  renderFlavor = ({id, type}) => <div key={id}>{type}</div>
-
+  handleClick = (id) => {
   
+      console.log('clicked' + id);
+      fetch(`http://localhost:5000/flavors/delete?id=${id}`)
+      .then(this.getFlavors)
+      .catch(err => console.log(err))
+    }
+
+
   render() {
 
     const { flavors, flavor} = this.state;
 
     return (
       <div className="App">
+       <Wrapper>
+        {flavors.map(flavor => (
 
-        {flavors.map(this.renderFlavor)}
+          <FlavorCard
+          id={flavor.id}
+          key={flavor.id}
+          type={flavor.type}
+          price={flavor.price}
+          handleClick={this.handleClick}
+          />
+
+         
+        ))}
+  
+     </Wrapper>
         
         <input
          value={flavor.type}
