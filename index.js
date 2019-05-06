@@ -59,5 +59,24 @@ const sql = `INSERT INTO flavors(type, price) VALUES('${type}', '${price}')`;
     
 });
 
+//delete 
+app.get('/flavors/delete', (req, res) => {
+    const {id} = req.query;
+
+    const sql =     `DELETE FROM flavors WHERE id = '${id}'`;
+//http://localhost:5000/flavors/delete?id=4
+    db.query(sql, (err, results) => {
+        if(err){
+            return res.send(err)
+        } else {
+            res.send('Sucessfully deleted');
+        }
+    });
+
+});
+
+
+
+
 
 app.listen(5000, () => console.log('Server started'));
