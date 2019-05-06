@@ -69,6 +69,7 @@ class App extends Component {
       <div className="list">
       <div className="list-grid">
 
+     
        <Wrapper>
         {flavors.map(flavor => (
 
@@ -85,6 +86,9 @@ class App extends Component {
         ))}
   
      </Wrapper>
+     
+
+     <div className="list-grid-two">
         <p>Type:</p>
         <input
       
@@ -98,10 +102,10 @@ class App extends Component {
         value={flavor.price}
          onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
-
+    <br></br>
         <button 
         className="add-button" onClick={this.addFlavor} > Add a flavor!</button>
-      
+      </div>
       </div>
       </div>
       </div>

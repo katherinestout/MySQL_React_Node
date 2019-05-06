@@ -31,7 +31,7 @@
 
 }
 .list-info-list{
-  display: grid;
+display: grid;
 text-align: center;
 grid-gap:20px;
 grid-template-columns: 1fr;
@@ -40,27 +40,33 @@ grid-template-columns: 1fr;
 
 .list{
   background:#f9feff;
+  text-align: center;
 
 }
-list-grid{
+.list-grid{
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
 }
-
-
+.list-grid-one{
+    text-align: center;
+}
 
 .contact p{
   margin:0;
 }
 
-.right{
-  text-align: right;
-
-}
-.add-button, .contact input {
-  width:100%;
+.add-button{
+  width: 25%;
   padding:1em;
   border:1px solid #c9e6ff;
+  margin-top: 15px;
+}
+
+input{
+  width: 50%;
+  height: 30px;
+  font-size: 20px;
 }
 
 .add-button{
@@ -73,7 +79,7 @@ list-grid{
   background: lightskyblue;
   padding:1em;
   border:1px solid #c9e6ff;
-  width:25%;
+  width: 25%;
 
 }
 .delete-button{
@@ -107,13 +113,18 @@ list-grid{
 
 /* LARGE SCREENS */
 @media(min-width:700px){
-  .wrapper{
-    display: grid;
 
-  }
 
   .wrapper > *{
     padding:2em;
   }
 
+}
+
+@media(max-width: 900px){
+  .list-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+
+  }
 }
