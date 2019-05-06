@@ -48,6 +48,9 @@ class App extends Component {
 
     return (
       <div className="App">
+      <h1>Kat's Ice Cream Shop</h1>
+      <h2>Add a new flavor to the shop!</h2>
+      <h3>You can add, delete, and update flavors.</h3>
        <Wrapper>
         {flavors.map(flavor => (
 
@@ -63,17 +66,21 @@ class App extends Component {
         ))}
   
      </Wrapper>
-        
+        <p>Type:</p>
         <input
          value={flavor.type}
         onChange={e => this.setState({flavor: {...flavor, type: e.target.value}})}
         />
+        <span>&nbsp;</span> 
+        <p>Price:</p>
         <input 
         value={flavor.price}
          onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
+        <span>&nbsp;</span> 
 
         <button onClick={this.addFlavor} > Add a flavor!</button>
+     
       </div>
     )
   }

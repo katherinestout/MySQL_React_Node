@@ -2,15 +2,16 @@ import React from 'react';
 
 const FlavorCard = props => (
 
+<div>
 
-  <div 
-  onClick={() => props.handleClick(props.id)}>
+<p>{props.type} 
+<span>&nbsp;</span> 
+${props.price}</p>
 
-{props.type}
-{props.price}
+<button onClick={() => props.handleClick(props.id)}>Delete</button>
+<span>&nbsp;</span> 
+<button>Replace</button>
   </div>
-
-
 
 )
 
