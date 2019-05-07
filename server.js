@@ -16,9 +16,7 @@ db.connect();
 //cors allows us to overcome the cors error that happens with fetch
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Go to all /flavors')
-});
+
 
 //get all flavors
 app.get('/flavors', (req, res) => {
@@ -87,7 +85,15 @@ app.get('/flavors/update', (req, res) => {
 });
 
 
+//serve static assets in productions
+if(process.env.NODE_ENV === 'production'){
+    //set static folder
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+}
 
+const PORT = process.env.PORT || 5000;
 
-
-app.listen(5000, () => console.log('Server started'));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
