@@ -19,7 +19,8 @@ class App extends Component {
     this.setState(() => this.initialState)
   }
   
-/*after alll elements of page are rendered correctly, this method is called
+  
+/*after all elements of page are rendered correctly, this method is called
 it is called to either fetch data from external API or perform some unique operations
 in this case, get all of the flavors
 */
@@ -35,6 +36,8 @@ in this case, get all of the flavors
    .then(this.handleFormReset)
    .catch(err => console.log(err))
   }
+
+
 //add flavor
   addFlavor = () => {
     const { flavor } = this.state;
@@ -42,12 +45,16 @@ in this case, get all of the flavors
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
+
+
 //delete flavor, based on id
   handleClick = (id) => {
       fetch(`http://localhost:5000/flavors/delete?id=${id}`)
       .then(this.getFlavors)
       .catch(err => console.log(err))
     }
+
+
 //update a flavor to mint chocolate chip, based on id
   handleUpdate = (id) => {
     fetch(`http://localhost:5000/flavors/update?id=${id}`)
