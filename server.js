@@ -3,20 +3,30 @@ const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
+//mysql://hp1d4bs50rec9cvm:iyzgy4bg5948j7ot@d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/vocey8ju3mwo0yu6
+/*  host: 'localhost',
+    user: 'root',
+    password: 'Root1234!',
+    database: 'ice_cream_DB'
+    */
+var db; 
 
-const db = mysql.createConnection({
+if(process.env.JAWSDB_URL){
+    db=mysql.createConnection(process.env.JAWSDB_URL);
+} else{
+
+db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Root1234!',
     database: 'ice_cream_DB'
 });
+};
 
 db.connect();
 
 //cors allows us to overcome the cors error that happens with fetch
 app.use(cors());
-
-
 
 //get all flavors
 app.get('/flavors', (req, res) => {
