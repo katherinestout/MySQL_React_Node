@@ -3,7 +3,7 @@ import React from 'react';
 const FlavorCard = props => (
 
 <div className="list-grid-one">
-<p>
+<p> <i class="fas fa-ice-cream"></i>
 {props.type} 
 <span>&nbsp;</span> 
 ${props.price}

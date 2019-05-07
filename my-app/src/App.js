@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import FlavorCard from './FlavorCard';
 import Wrapper from './Wrapper';
 import './App.css';
+import Footer from './Footer';
+
 
 class App extends Component {
   state = {
@@ -59,7 +61,7 @@ class App extends Component {
 
       <div className="list-info">
       <div className="list-info-list">
-      <h1>Kat's Ice Cream Shop</h1>
+      <h1> <i class="fas fa-ice-cream"> </i> Kat's Ice Cream Shop <i class="fas fa-ice-cream"></i></h1>
       <h2>Add a new flavor to the shop!</h2>
       <h3>You can add, delete, and update flavors.</h3>
       </div>
@@ -109,6 +111,7 @@ class App extends Component {
       </div>
       </div>
       </div>
+      <Footer></Footer>
       </div>
     )
   }

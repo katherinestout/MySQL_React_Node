@@ -1,7 +1,9 @@
 
 .App{
-  background:#92bde7;
-  color:#485e74;
+  background-image: url('http://www.cashadvance6online.com/data/archive/img/3344410975.jpeg');
+  background-repeat: repeat;
+  max-width: 100%;
+  color: black;
   line-height:1.6;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding:1em;
@@ -24,19 +26,31 @@
 }
 
 .list-info{
-  background:lightblue;
+  background:#c9e6ff;
+  color: white;
 
 }
 .list-info-list{
 display: grid;
 text-align: center;
-grid-gap:20px;
 grid-template-columns: 1fr;
 }
 
+h1{
+  font-size: 30px;
+}
+
+h2{
+  font-size: 20px;
+  color: #FE83A4;
+}
+
+h3{
+  font-size: 15px;
+}
 
 .list{
-  background:#f9feff;
+  background: #FEDAFB;
   text-align: center;
 
 }
@@ -73,14 +87,14 @@ input{
 }
 
 .update-button{
-  background: lightskyblue;
+  background: #C2FECA;
   padding:1em;
   border:1px solid #c9e6ff;
   width: 25%;
 
 }
 .delete-button{
-  background: lightblue;
+  background: #FE83A4;
   padding:1em;
   border:1px solid #c9e6ff;
   width:25%;
@@ -94,14 +108,14 @@ input{
   transition: background-color 2s ease-out;
 }
 .update-button:hover,.add-button:focus{
-  background:#92bde7;
+  background:#49FE7F;
   color:#fff;
   outline:0;
   transition: background-color 2s ease-out;
 }
 
 .delete-button:hover,.add-button:focus{
-  background:#92bde7;
+  background:#FEBC49;
   color:#fff;
   outline:0;
   transition: background-color 2s ease-out;
@@ -124,4 +138,17 @@ input{
     grid-template-columns: 1fr;
 
   }
+}
+
+/*
+Footer
+*/
+
+.footer {
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
 }
