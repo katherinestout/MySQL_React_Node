@@ -1,6 +1,6 @@
-CREATE DATABASE ice_cream_DB;
+CREATE DATABASE ice_cream;
 
-USE ice_cream_DB;
+USE ice_cream;
 
 CREATE TABLE flavors(
     type VARCHAR(100),

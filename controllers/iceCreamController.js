@@ -1,8 +1,24 @@
 const express = require('express');
-const mysql = require('mysql');
+//const mysql = require('mysql');
+const router = express.Router();
+const orm = require('../config/orm');
 
-let router = express.Router();
 
+
+router.get("/flavors", function(req, res) {
+    orm.selectAll(function(error, flavors) {
+        if(error){
+            console.log('eeek');
+        } else {
+            return res.json({
+                data: flavors
+            });
+        }
+    });
+});
+
+
+/*
 var db; 
 
 if(process.env.JAWSDB_URL){
@@ -18,7 +34,9 @@ db = mysql.createConnection({
 };
 
 db.connect();
+*/
 
+/*
 //get all flavors
 router.get('/flavors', (req, res) => {
     const sql = 'SELECT * FROM flavors';
@@ -84,6 +102,6 @@ router.put('/flavors/update', (req, res) => {
 
     });
 });
-
+*/
 
 module.exports = router;

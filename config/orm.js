@@ -1,12 +1,20 @@
-import Connection from './connection';
+const connection = require('./connection');
 
-function ORM(){
-    this.connection = Connection();
+const orm = {
+    selectAll: function (cb){
+        connection.query("SELECT * FROM flavors", function(err, data){
+            if(err) cb(err, null);
+               cb(null, data);
+        });
+    }
+};
+
 
     //selectall
+
     //insert one
     //delete one
     //update one
-}
 
-module.exports =ORM;
+
+module.exports = orm;
