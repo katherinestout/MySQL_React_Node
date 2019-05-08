@@ -1,6 +1,6 @@
 const express = require('express');
-const mysql = require('mysql');
 const cors = require('cors');
+const routes = require('./controllers/iceCreamController');
 
 const app = express();
 //mysql://hp1d4bs50rec9cvm:iyzgy4bg5948j7ot@d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/vocey8ju3mwo0yu6
@@ -9,91 +9,13 @@ const app = express();
     password: 'Root1234!',
     database: 'ice_cream_DB'
     */
-var db; 
 
-if(process.env.JAWSDB_URL){
-    db=mysql.createConnection(process.env.JAWSDB_URL);
-} else{
-
-db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Root1234!',
-    database: 'ice_cream_DB'
-});
-};
-
-db.connect();
 
 //cors allows us to overcome the cors error that happens with fetch
 app.use(cors());
 
-//get all flavors
-app.get('/flavors', (req, res) => {
-    const sql = 'SELECT * FROM flavors';
-
-    db.query(sql, (err, results) => {
-        if(err){
-            return res.send(err)
-        } else {
-            return res.json({
-                data: results
-            })
-        }
-    });
-});
-
-//add a flavor
-app.get('/flavors/add', (req, res) => {
-    const {type, price} = req.query;
-
-const sql = `INSERT INTO flavors(type, price) VALUES('${type}', '${price}')`;
-//http://localhost:5000/flavors/add?type=pea&price=1
-    db.query(sql, (err, results) => {
-        if(err) {
-            return res.send(err)
-        } else {
-        res.send('Sucessfully added!');
-        }
-    });
-    
-});
-
-//delete a flavor
-app.get('/flavors/delete', (req, res) => {
-    const {id} = req.query;
-
-    const sql =     `DELETE FROM flavors WHERE id = '${id}'`;
-//http://localhost:5000/flavors/delete?id=4
-    db.query(sql, (err, results) => {
-        if(err){
-            return res.send(err)
-        } else {
-            res.send('Sucessfully deleted!');
-        }
-    });
-
-});
-
-//update a flavor
-app.get('/flavors/update', (req, res) => {
-
-  const{id} = req.query;
-
-    const sql = `UPDATE flavors SET type='Mint Chocolate Chip' WHERE id = '${id}'`;
-
-    //http://localhost:5000/flavors/update?type=7
-
-    db.query(sql, (err, results) => {
-        if(err){
-            return res.send(err)
-        } else {
-            res.send('Sucessfully updated!');
-        }
-
-    });
-});
-
+//routing
+app.use(routes);
 
 //serve static assets in productions
 if(process.env.NODE_ENV === 'production'){
