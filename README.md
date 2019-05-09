@@ -8,5 +8,7 @@ A simple CRUD app, Kat's Ice Cream Shop, that implements MVC file structure.
 
 React, Express, Node, MySQL, Fetch. 
 
+<img width="1009" alt="Screen Shot 2019-05-09 at 3 02 49 PM" src="https://user-images.githubusercontent.com/39039142/57479534-a2ce3180-726b-11e9-877d-8e86dffc9664.png">
+
 ## Contributors: 
 Katherine Stout
