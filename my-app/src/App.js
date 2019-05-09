@@ -4,22 +4,26 @@ import Wrapper from './Wrapper';
 import './App.css';
 import Footer from './Footer';
 
+const initialState = { 
+        flavors: [],
+        flavor: {type:'', price:'', id:''},
+        typeError: "",
+        priceError: "" 
+      }; 
 
 class App extends Component {
   //set initial state (of the flavor) so we can reset form inputs
-  initialState = {type:'', price:'', id:''}
 
-  state = {
-    flavors: [],
-    flavor: this.initialState
-  }
 
-  //clearing form when submitted
-  handleFormReset = () => {
-    this.setState(() => this.initialState)
-  }
+  state = 
+    initialState;
+  
+
+
   
   
+
+
 /*after all elements of page are rendered correctly, this method is called
 it is called to either fetch data from external API or perform some unique operations
 in this case, get all of the flavors
@@ -28,31 +32,34 @@ in this case, get all of the flavors
     this.getFlavors();
   }
 
+  //clearing form when submitted
+  handleFormReset = () => {
+    this.setState(() => this.initialState)
+  }
+
   //getting all flavors, using fetch
   getFlavors =()=> {
-   fetch("/flavors",
+   fetch("http://localhost:5000/flavors",
    {method: 'GET'})
    .then(response => response.json())
    .then(response => this.setState({flavors: response.data}))
-   .then(this.handleFormReset)
    .catch(err => console.log(err))
   }
 
-
+ 
 //add flavor
   addFlavor = () => {
     const { flavor } = this.state;
-    fetch(`/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
+    fetch(`http://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
     {method: 'POST'
-})
-    .then(this.getFlavors)
+}).then(this.getFlavors)
     .catch(err => console.log(err))
   }
 
-
+ 
 //delete flavor, based on id
   handleClick = (id) => {
-      fetch(`/flavors/delete?id=${id}`,
+      fetch(`http://localhost:5000/flavors/delete?id=${id}`,
       {method: 'DELETE'})
       .then(this.getFlavors)
       .catch(err => console.log(err))
@@ -69,9 +76,40 @@ in this case, get all of the flavors
   }
 
 
+//error handling for blank form inputs
+validate = () => {
+  let typeError = "";
+  let priceError = "";
+
+  if(!this.state.flavor.type){
+    typeError = "You must type a flavor!";
+  }
+  if(!this.state.flavor.price){
+    priceError = "You must give a price!";
+
+  } if(typeError || priceError){
+    this.setState({priceError, typeError});
+    return false;
+  }
+  //if allgood return true
+  return true;
+     };
+
+
+  onSubmit = event => {
+    event.preventDefault();
+      const isValid = this.validate();
+//if it passed then log yay
+      if(isValid){
+       console.log('yay');
+       this.setState(() => this.initialState);
+      }
+  };
+
   render() {
 
     const { flavors, flavor} = this.state;
+
 
     return (
       <div className="App">
@@ -110,21 +148,27 @@ in this case, get all of the flavors
 
      <div className="list-grid-two">
 
-     <form onReset={this.handleFormReset}>
+     <form onSubmit={this.onSubmit}>
         <p>Type:</p>
         <input
-         value={flavor.type}
+         value={this.state.flavor.type}
         onChange={e => this.setState({flavor: {...flavor, type: e.target.value}})}
         />
+        <div>{this.state.typeError}</div>
   
         <p>Price:</p>
         <input 
-        value={flavor.price}
+        value={this.state.flavor.price}
          onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
+      <div>{this.state.priceError}</div>
+
        <br></br>
         <button 
-        className="add-button" onClick={this.addFlavor} > Add a flavor!</button>
+        className="add-button" 
+
+        type= "submit"
+        > Add a flavor!</button>
 
       </form>
 
