@@ -32,7 +32,8 @@ else {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'ice_cream'
+        database: 'ice_cream',
+        port: 3306
     });
 }
 
