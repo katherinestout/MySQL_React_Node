@@ -61,7 +61,7 @@ in this case, get all of the flavors
 
 //update a flavor to mint chocolate chip, based on id
   handleUpdate = (id) => {
-    fetch(`/flavors/update?id=${id}`,
+    fetch(`http://localhost:5000/flavors/update?id=${id}`,
     {method: 'PUT'
   })
     .then(this.getFlavors)
