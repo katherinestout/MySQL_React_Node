@@ -31,7 +31,8 @@ in this case, get all of the flavors
   //getting all flavors, using fetch
   getFlavors =()=> {
    fetch("https://localhost:5000/flavors",
-   {method: 'GET'})
+   {method: 'GET',
+  mode: 'cors'})
    .then(response => response.json())
    .then(response => this.setState({flavors: response.data}))
    .then(this.handleFormReset)
@@ -43,7 +44,8 @@ in this case, get all of the flavors
   addFlavor = () => {
     const { flavor } = this.state;
     fetch(`https://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
-    {method: 'POST'})
+    {method: 'POST',
+    mode: 'cors'})
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
@@ -52,7 +54,8 @@ in this case, get all of the flavors
 //delete flavor, based on id
   handleClick = (id) => {
       fetch(`https://localhost:5000/flavors/delete?id=${id}`,
-      {method: 'DELETE'})
+      {method: 'DELETE',
+      mode: 'cors'})
       .then(this.getFlavors)
       .catch(err => console.log(err))
     }
@@ -61,7 +64,8 @@ in this case, get all of the flavors
 //update a flavor to mint chocolate chip, based on id
   handleUpdate = (id) => {
     fetch(`https://localhost:5000/flavors/update?id=${id}`,
-    {method: 'PUT'})
+    {method: 'PUT',
+    mode: 'cors'})
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
