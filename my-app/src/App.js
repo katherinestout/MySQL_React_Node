@@ -32,7 +32,7 @@ in this case, get all of the flavors
   getFlavors =()=> {
    fetch("https://localhost:5000/flavors",
    {method: 'GET',
-  mode: 'cors'})
+  mode: 'no-cors'})
    .then(response => response.json())
    .then(response => this.setState({flavors: response.data}))
    .then(this.handleFormReset)
@@ -45,7 +45,7 @@ in this case, get all of the flavors
     const { flavor } = this.state;
     fetch(`https://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
     {method: 'POST',
-    mode: 'cors'})
+    mode: 'no-cors'})
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
@@ -55,7 +55,7 @@ in this case, get all of the flavors
   handleClick = (id) => {
       fetch(`https://localhost:5000/flavors/delete?id=${id}`,
       {method: 'DELETE',
-      mode: 'cors'})
+      mode: 'no-cors'})
       .then(this.getFlavors)
       .catch(err => console.log(err))
     }
@@ -65,7 +65,7 @@ in this case, get all of the flavors
   handleUpdate = (id) => {
     fetch(`https://localhost:5000/flavors/update?id=${id}`,
     {method: 'PUT',
-    mode: 'cors'})
+    mode: 'no-cors'})
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
