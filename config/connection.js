@@ -31,7 +31,7 @@ else {
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: 'Root1234!',
+        password: '',
         database: 'ice_cream'
     });
 }
