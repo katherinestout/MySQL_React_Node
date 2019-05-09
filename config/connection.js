@@ -31,13 +31,18 @@ else {
     connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '',
+        password: 'Root1234!',
         database: 'ice_cream',
         port: 3306
     });
 }
 
-connection.connect();
+connection.connect(function(err){
+    if(err){
+        console.log("error connecting to db");
+    }
+    console.log("connected");
+});
 
 
 module.exports = connection;
