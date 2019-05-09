@@ -5,7 +5,7 @@ import React from 'react';
 const FlavorCard = props => (
 
 <div className="list-grid-one">
-<p> <i class="fas fa-ice-cream"></i>
+<p> <i className="fas fa-ice-cream"></i>
 {props.type} 
 <span>&nbsp;</span> 
 ${props.price}

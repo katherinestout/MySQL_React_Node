@@ -8,7 +8,7 @@ const orm = require('../config/orm');
 router.get("/flavors", function(req, res) {
     orm.selectAll(function(error, flavors) {
         if(error){
-            console.log('eeek');
+            console.log('error');
         } else {
             return res.json({
                 data: flavors
@@ -16,6 +16,28 @@ router.get("/flavors", function(req, res) {
         }
     });
 });
+
+router.post("/flavors/add", function(req, res) {
+   
+   const {price, type} = req.query;
+    //flavors = burgers
+    //burger_name = type or price
+    //burgers_db
+    //burgerName?? = tyepType
+
+    orm.insertOne(type, price, function(error){
+        if(error){
+            return res.status(401).json({
+                message: 'sorry not able to add flavor'
+            });
+        }
+        return res.json({
+            type: type,
+            price: price
+        });
+    });
+});
+
 
 
 /*
