@@ -18,13 +18,7 @@ router.get("/flavors", function(req, res) {
 });
 
 router.post("/flavors/add", function(req, res) {
-   
    const {price, type} = req.query;
-    //flavors = burgers
-    //burger_name = type or price
-    //burgers_db
-    //burgerName?? = tyepType
-
     orm.insertOne(type, price, function(error){
         if(error){
             return res.status(401).json({
@@ -38,6 +32,15 @@ router.post("/flavors/add", function(req, res) {
     });
 });
 
+router.put("/flavors/update", function(req, res){
+    const {id} = req.query;
+    orm.updateOne(id, function(error){
+        if(error){
+            return res.send("sorry not able to update");
+        }
+        return res.send("sucessfully updated!");
+    });
+});
 
 
 /*

@@ -9,24 +9,25 @@ const orm = {
     },
 
     insertOne: function( type, price, cb){
-        //burgerName= type price
                 const sqlQuery = `INSERT INTO flavors(type, price) VALUES('${type}', ${price})`;
                 connection.query(sqlQuery, function(err, data){
                     if(err) cb(err, null);
                     cb(null, data);
         
                 });
-        
-            
+    },
+
+    updateOne: function(id, cb){
+        const sqlQuery = `UPDATE flavors SET type='Mint Chocolate Chip' WHERE id = '${id}'`;
+        connection.query(sqlQuery, function(err, data){
+            if(err) cb(err, null);
+            cb(null, data);
+        });
 
     }
-
 }
 
 
-    //selectall
-
-    //insert one
     //delete one
     //update one
 
