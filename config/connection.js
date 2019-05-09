@@ -1,34 +1,16 @@
 const mysql = require('mysql');
-
-
-//const db_name = 'ice_cream_DB';
 /*
-var db; 
+const db_name = 'ice_cream';
 
-if(process.env.JAWSDB_URL){
-    db=mysql.createConnection(process.env.JAWSDB_URL);
-} else{
-
-db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Root1234!',
-    database: 'ice_cream_DB'
-});
-};
-
-db.connect();
-*/
-/*
 function connection(){
     if(process.env.JAWSDB_URL){
         connection = mysql.createConnection(process.env.JAWSDB_URL);
     } else {
         connection = mysql.createConnection({
             host: 'localhost',
-            //port: 3306,
+            port: 3306,
             user: 'root',
-            password: '',
+            password: 'Root1234!',
             database: db_name
         });
     }
@@ -40,13 +22,20 @@ function connection(){
         console.log("connected to db");
     });
 }*/
+let connection; 
 
-let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Root1234!',
-    database: 'ice_cream'
-});
+if(process.env.JAWSDB_URL) {
+    connection= mysql.createConnection(process.env.JAWSDB_URL);
+}
+else {
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'Root1234!',
+        database: 'ice_cream'
+    });
+}
+
 connection.connect();
 
 
