@@ -30,9 +30,11 @@ in this case, get all of the flavors
 
   //getting all flavors, using fetch
   getFlavors =()=> {
-   fetch("https://localhost:5000/flavors",
+   fetch("http://localhost:5000/flavors",
    {method: 'GET',
-  mode: 'no-cors'})
+   headers: {
+    "Content-Type": "text/plain"
+}})
    .then(response => response.json())
    .then(response => this.setState({flavors: response.data}))
    .then(this.handleFormReset)
@@ -43,9 +45,12 @@ in this case, get all of the flavors
 //add flavor
   addFlavor = () => {
     const { flavor } = this.state;
-    fetch(`https://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
+    fetch(`http://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
     {method: 'POST',
-    mode: 'no-cors'})
+    headers: {
+      "Content-Type": "text/plain"
+  }
+})
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
@@ -53,9 +58,11 @@ in this case, get all of the flavors
 
 //delete flavor, based on id
   handleClick = (id) => {
-      fetch(`https://localhost:5000/flavors/delete?id=${id}`,
+      fetch(`http://localhost:5000/flavors/delete?id=${id}`,
       {method: 'DELETE',
-      mode: 'no-cors'})
+      headers: {
+        "Content-Type": "text/plain"
+    }})
       .then(this.getFlavors)
       .catch(err => console.log(err))
     }
@@ -63,9 +70,12 @@ in this case, get all of the flavors
 
 //update a flavor to mint chocolate chip, based on id
   handleUpdate = (id) => {
-    fetch(`https://localhost:5000/flavors/update?id=${id}`,
+    fetch(`http://localhost:5000/flavors/update?id=${id}`,
     {method: 'PUT',
-    mode: 'no-cors'})
+    headers: {
+      "Content-Type": "text/plain"
+  }
+  })
     .then(this.getFlavors)
     .catch(err => console.log(err))
   }
