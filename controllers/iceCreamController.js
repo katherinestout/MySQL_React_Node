@@ -42,6 +42,17 @@ router.put("/flavors/update", function(req, res){
     });
 });
 
+router.delete("/flavors/delete", function(req, res){
+    const{id} = req.query;
+    orm.deleteOne(id, function(error){
+        if(error){
+            return res.send("sorry not able to delete");
+        }
+        return res.send("sucessfully deleted!");
+    });
+
+});
+
 
 /*
 var db; 
