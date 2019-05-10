@@ -18,9 +18,8 @@ onClick={() => props.handleClick(props.id)}>DELETE</button>
 <span>&nbsp;</span> 
 
 <button className="update-button"
-onClick={() => props.handleUpdate(props.id)}>UDATE</button>
+onClick={() => props.handleUpdate(props.id)}>UPDATE</button>
   </div>
-
 
 )
 

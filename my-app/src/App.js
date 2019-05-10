@@ -4,26 +4,19 @@ import Wrapper from './Wrapper';
 import './App.css';
 import Footer from './Footer';
 
-const initialState = { 
-        flavors: [],
-        flavor: {type:'', price:'', id:''},
-        typeError: "",
-        priceError: "" 
-      }; 
+
 
 class App extends Component {
-  //set initial state (of the flavor) so we can reset form inputs
+  //set initial states so we can reset form inputs
+initialState = { 
+  flavors: [],
+  flavor: {type:'', price:'', id:''},
+  typeError: "",
+  priceError: "" 
+}; 
 
-
-  state = 
-    initialState;
+state = this.initialState;
   
-
-
-  
-  
-
-
 /*after all elements of page are rendered correctly, this method is called
 it is called to either fetch data from external API or perform some unique operations
 in this case, get all of the flavors
@@ -32,11 +25,11 @@ in this case, get all of the flavors
     this.getFlavors();
   }
 
-  //clearing form when submitted
+  //clearing form when submitted, resetting state to initial state
   handleFormReset = () => {
     this.setState(() => this.initialState)
   }
-
+ 
   //getting all flavors, using fetch
   getFlavors =()=> {
    fetch("http://localhost:5000/flavors",
@@ -52,7 +45,9 @@ in this case, get all of the flavors
     const { flavor } = this.state;
     fetch(`http://localhost:5000/flavors/add?type=${flavor.type}&price=${flavor.price}`, 
     {method: 'POST'
-}).then(this.getFlavors)
+})
+    .then(this.handleFormReset)
+    .then(this.getFlavors)
     .catch(err => console.log(err))
   }
 
@@ -91,7 +86,7 @@ validate = () => {
     this.setState({priceError, typeError});
     return false;
   }
-  //if allgood return true
+  //if passed return true
   return true;
      };
 
@@ -99,10 +94,9 @@ validate = () => {
   onSubmit = event => {
     event.preventDefault();
       const isValid = this.validate();
-//if it passed then log yay
+//if it passed validation then addFlavor
       if(isValid){
-       console.log('yay');
-       this.setState(() => this.initialState);
+       this.addFlavor();
       }
   };
 
@@ -149,24 +143,23 @@ validate = () => {
      <div className="list-grid-two">
 
      <form onSubmit={this.onSubmit}>
-        <p>Type:</p>
+        <p>Flavor:</p>
         <input
          value={this.state.flavor.type}
         onChange={e => this.setState({flavor: {...flavor, type: e.target.value}})}
         />
-        <div>{this.state.typeError}</div>
+        <div className="error">{this.state.typeError}</div>
   
         <p>Price:</p>
         <input 
         value={this.state.flavor.price}
          onChange={e => this.setState({flavor: {...flavor, price: e.target.value}})}
         />
-      <div>{this.state.priceError}</div>
+      <div className="error">{this.state.priceError}</div>
 
        <br></br>
         <button 
         className="add-button" 
-
         type= "submit"
         > Add a flavor!</button>
 
